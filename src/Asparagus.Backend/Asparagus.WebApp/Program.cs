@@ -1,4 +1,5 @@
 ﻿using Asparagus.Persistence;
+using Asparagus.WebApp.Middleware;
 
 var builder = WebApplication.CreateBuilder();
 
@@ -18,6 +19,11 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseHsts();
+}
+
 
 using (var scope = app.Services.CreateScope())
 {
@@ -34,6 +40,10 @@ using (var scope = app.Services.CreateScope())
         
     }
 }
+
+app.UseCustomExceptionHandler();
+
+app.UseStaticFiles();
 
 app.UseRouting();
 
