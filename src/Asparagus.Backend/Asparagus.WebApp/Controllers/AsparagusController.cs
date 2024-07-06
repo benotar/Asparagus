@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Asparagus.WebApp.Controllers;
 
-
 [ApiController]
-[Route("api/[controller]/[action]")]
-public class AsparagusController : ControllerBase
+public class AsparagusController : Controller
 {
     private readonly IAsparagusDbContext _db;
 
@@ -15,7 +13,8 @@ public class AsparagusController : ControllerBase
         _db = db;
     }
 
-    [HttpGet]
-    public string Get()
-        => "Hello, World!";
+    public async Task<IActionResult> Index()
+    {
+        return View();
+    }
 }

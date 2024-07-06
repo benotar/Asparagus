@@ -11,8 +11,4 @@
       <ProjectReference Include="..\Asparagus.Persistence\Asparagus.Persistence.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-    </ItemGroup>
-
 </Project>

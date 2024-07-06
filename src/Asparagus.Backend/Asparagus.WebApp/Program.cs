@@ -2,9 +2,7 @@
 
 var builder = WebApplication.CreateBuilder();
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddCors(options =>
@@ -20,11 +18,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 using (var scope = app.Services.CreateScope())
 {
@@ -48,6 +41,8 @@ app.UseAuthorization();
 
 app.UseCors("AllowAll");
 
-app.MapControllers();
+app.MapControllerRoute(
+    name: "Default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
